@@ -12,8 +12,10 @@ public class Worker extends Employee{
     }
     
     public void menu(){
-        System.out.println("Hello boss!");
-        System.out.println(" ");
+        System.out.println("Hello boss! This is what I can do for you:");
+        System.out.println("Enter 1 - To manufacture a product" +
+                           "Enter 2 - To manufacture a product" +
+                           "Enter 3 - "
         
     }
 }
