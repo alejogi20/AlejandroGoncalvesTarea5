@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class Plant {
     private final Scanner sc = new Scanner(System.in);
-    private final Worker worker = new Worker(15);
+    private static final Worker worker = new Worker(15);
     private final Supervisor supervisor = new Supervisor(22);
     private final Manager manager = new Manager(18);
     private static FreshProduct[] freshProductStock = new FreshProduct[10];
@@ -30,6 +30,7 @@ public class Plant {
                              "\nEnter 2 - To talk to the Supervisor" +
                              "\nEnter 3 - To talk to the Manager" +
                              "\nEnter 4 - To manufacture a new product" +
+                             "\nEnter 5 - To Close and watch the bill" +
                              "\n What would you like to do? : ");
 
             int option = sc.nextInt();
@@ -50,6 +51,11 @@ public class Plant {
                     break;
                 case 4:
                     this.manufactureMenu();
+                
+                case 5:
+                    
+                    System.out.println("Day ended, goodnight employees! This is Today´s bill");
+                    this.showBill();
                     
                 default: 
                     System.out.println("Not a valid option, please try again!");
@@ -304,6 +310,30 @@ public class Plant {
 
     public static void setProductFrozenByWaterStock(ProductFrozenByWater[] productFrozenByWaterStock) {
         Plant.productFrozenByWaterStock = productFrozenByWaterStock;
+    }
+
+    public static Worker getWorker() {
+        return worker;
+    }
+
+    public boolean isTakeInput() {
+        return takeInput;
+    }
+
+    public void setTakeInput(boolean takeInput) {
+        this.takeInput = takeInput;
+    }
+
+    public Scanner getSc() {
+        return sc;
+    }
+
+    public Supervisor getSupervisor() {
+        return supervisor;
+    }
+
+    public Manager getManager() {
+        return manager;
     }
     
     

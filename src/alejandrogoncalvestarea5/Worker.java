@@ -33,17 +33,22 @@ public class Worker extends Employee{
                     String product;
                     System.out.print("Please enter the name of the product you want to know about:");
                     product = sc.next();
-                    
-                    
+               
                     this.bringProductByName(product);
+                    
                     break;
                 case 2:
+                    
                     System.out.println("My salary is " + this.salary + "$ daily");
+                    
                     break;
                 case 3:
+                    
                     this.takeInput = false;
+                    
                     break;
                 default:
+                    
                     System.out.println("Excuse me, Sir? I don´t know what you mean, try again.");
                     break;
             }
@@ -185,11 +190,11 @@ public class Worker extends Employee{
     public void bringProductByName(String productName){
         
         int productFound = 0;
-        FreshProduct freshProduct;
-        RefrigeratedProduct refriProduct;
-        ProductFrozenByNitrogen nitroProduct;
-        ProductFrozenByAir  airProduct;     
-        ProductFrozenByWater waterProduct;
+        FreshProduct freshProduct = null;
+        RefrigeratedProduct refriProduct = null;
+        ProductFrozenByNitrogen nitroProduct = null;
+        ProductFrozenByAir  airProduct = null;     
+        ProductFrozenByWater waterProduct = null;
         
         
             
@@ -254,7 +259,80 @@ public class Worker extends Employee{
             } 
         }
         
-        switch        
+        switch(productFound){
+            
+            case 1:
+           
+                System.out.println("Name: " + freshProduct.getName());
+                System.out.println("expiration date/Best Before: " + freshProduct.getExpDate());
+                System.out.println("Origin Country: " + freshProduct.getOriginCountry());
+                System.out.println("Packaging date: " + freshProduct.getPackagingDate());
+                System.out.println("Numero de lote" + freshProduct.getNumLot());
+                System.out.println("Price: " + freshProduct.getPrice() + "$");
+                
+                break;
+                
+            case 2:
+                
+                System.out.println("Name: " + refriProduct.getName());
+                System.out.println("expiration date/Best Before: " + refriProduct.getExpDate());
+                System.out.println("Origin Country: " + refriProduct.getOriginCountry());
+                System.out.println("Packaging date: " + refriProduct.getPackagingDate());
+                System.out.println("Lot number: " + refriProduct.getNumLot());
+                System.out.println("Price: " + refriProduct.getPrice() + "$");
+                System.out.println("Recommended storage temperature: " + refriProduct.getRecommendedTemp() + " celsius");
+                System.out.println("Registered under: " + refriProduct.getFoodSupervisionCode());
+                
+                break;
+                
+                
+                
+            case 3:
+                
+                System.out.println("Name: " + nitroProduct.getName());
+                System.out.println("expiration date/Best Before: " + nitroProduct.getExpDate());
+                System.out.println("Origin Country: " + nitroProduct.getOriginCountry());
+                System.out.println("Packaging date: " + nitroProduct.getPackagingDate());
+                System.out.println("Lot number: " + nitroProduct.getNumLot());
+                System.out.println("Price: " + nitroProduct.getPrice() + "$");
+                System.out.println("Recommended storage temperature: " + nitroProduct.getRecommendedTemp() + " celsius");
+                System.out.println("Refrigeration method: " + nitroProduct.getFrozingMethod());
+                System.out.println("Exposition time to nitrogen: " + nitroProduct.getNitrogenExposition() + " seconds");
+                
+                break;
+                
+                
+            case 4:
+                
+                System.out.println("Name: " + airProduct.getName());
+                System.out.println("expiration date/Best Before: " + airProduct.getExpDate());
+                System.out.println("Origin Country: " + airProduct.getOriginCountry());
+                System.out.println("Packaging date: " + airProduct.getPackagingDate());
+                System.out.println("Lot number: " + airProduct.getNumLot());
+                System.out.println("Price: " + airProduct.getPrice() + "$");
+                System.out.println("Recommended storage temperature: " + airProduct.getRecommendedTemp() + " celsius");
+                System.out.println("Frozing Air composition: ");
+                System.out.println("%" + airProduct.getPercentCarbonDiox() + "Carbon dioxide");
+                System.out.println("%" + airProduct.getPercentNitrogen() + "Nitrogen");
+                System.out.println("%" + airProduct.getPercentOxigen() + "Oxigen");
+                System.out.println("%" + airProduct.getPercentWaterSteam() + "Water Steam");
+                
+                break;
+                
+            case 5:
+                
+                System.out.println("Name: " + airProduct.getName());
+                System.out.println("expiration date/Best Before: " + airProduct.getExpDate());
+                System.out.println("Origin Country: " + airProduct.getOriginCountry());
+                System.out.println("Packaging date: " + airProduct.getPackagingDate());
+                System.out.println("Lot number: " + airProduct.getNumLot());
+                System.out.println("Price: " + airProduct.getPrice() + "$");
+                System.out.println("Recommended storage temperature: " + airProduct.getRecommendedTemp() + " celsius");
+                System.out.println("Salinity of the frozing water: " + waterProduct.getSalinity() + " grams of salt/ water litre");
+                
+                break;
+                
+        }            
         
     }
     

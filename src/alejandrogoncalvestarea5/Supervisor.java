@@ -5,11 +5,16 @@
  */
 package alejandrogoncalvestarea5;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Alejandro Goncalves
  */
 public class Supervisor extends Employee{
+    
+    private boolean takeInput;
+    private Scanner sc = new Scanner(System.in);
 
     public Supervisor(int salary) {
         super(salary);
@@ -19,7 +24,7 @@ public class Supervisor extends Employee{
         System.out.println("Hello boss! This is what I can do for you:");
         
         while(this.takeInput){
-            System.out.print("\nEnter 1 - To know information about a product" +
+            System.out.print("Enter 1 - To sell a product" +
                              "\nEnter 2 - to know my salary" +
                              "\nEnter 3 - To go back and talk to another employee"+
                              "\nWhat do you want me to do? : ");
@@ -28,7 +33,7 @@ public class Supervisor extends Employee{
 
             switch(option){
                 case 1:
-                    
+                    this.sellProduct();
                     break;
                 case 2:
                     break;
@@ -39,5 +44,10 @@ public class Supervisor extends Employee{
                     break;
             }
         }
+    }
+    
+    public void sellProduct(){
+        
+        
     }
 }
