@@ -22,7 +22,7 @@ public class Worker extends Employee{
         takeInput = true;
         
         while(this.takeInput){
-            System.out.print("\nEnter 1 - To know information about a product" +
+            System.out.print("\nEnter 1 - To know information about the products on stock" +
                              "\nEnter 2 - to know my salary" +
                              "\nEnter 3 - To go back and talk to another employee"+
                              "\nWhat do you want me to do? : ");
@@ -31,12 +31,8 @@ public class Worker extends Employee{
 
             switch(option){
                 case 1:
-                 
-                    String product;
-                    System.out.print("Please enter the name of the product you want to know about:");
-                    product = sc.next();
-               
-                    this.bringProductByName(product);
+              
+                    this.showProductInfo();
                     
                     break;
                 case 2:
@@ -74,11 +70,11 @@ public class Worker extends Employee{
         }
     }
     
-    public void addFreshProductToStock(FreshProduct freshProduct, FreshProduct[] freshProductStock){
+    public void addFreshProductToStock(FreshProduct freshProduct){
         
-        for(int i = 0; i < freshProductStock.length; i++){
-            if(freshProductStock[i] == null){
-                freshProductStock[i] = freshProduct;
+        for(int i = 0; i < Plant.getFreshProductStock().length; i++){
+            if(Plant.getFreshProductStock()[i] == null){
+                Plant.getFreshProductStock()[i] = freshProduct;
                 break;
             }
         } 
@@ -189,147 +185,100 @@ public class Worker extends Employee{
         } 
     }
     
-    public void bringProductByName(String productName){
-        
-        int productFound = 0;
-        FreshProduct freshProduct = null;
-        RefrigeratedProduct refriProduct = null;
-        ProductFrozenByNitrogen nitroProduct = null;
-        ProductFrozenByAir  airProduct = null;     
-        ProductFrozenByWater waterProduct = null;
+    public void showProductInfo(){
         
         for (FreshProduct freshProductAux : Plant.getFreshProductStock()) {
             if (freshProductAux != null) {
-                if (freshProductAux.getName().equals(productName)) {
-                    productFound = 1;
-                    freshProduct = freshProductAux;
-                    break;
-                }
+                System.out.println("=================================================================");
+                System.out.println("Name: " + freshProductAux.getName());
+                System.out.println("expiration date/Best Before: " + freshProductAux.getExpDate());
+                System.out.println("Origin Country: " + freshProductAux.getOriginCountry());
+                System.out.println("Packaging date: " + freshProductAux.getPackagingDate());
+                System.out.println("Numero de lote" + freshProductAux.getNumLot());
+                System.out.println("Price: " + freshProductAux.getPrice() + "$");
+                System.out.println("=================================================================");
+                
             }
         }
           
-        for (RefrigeratedProduct refriProductAux: Plant.getRefrigeratedProductStock()) {
-                if (refriProductAux != null) {
-                    if (refriProductAux.getName().equals(productName)) {
-                        productFound = 2;
-                        refriProduct = refriProductAux;
-                        break;
-                    }
+       
+        
+        for (RefrigeratedProduct refriProductAux: Plant.getRefrigeratedProductStock()){
+            
+                if (refriProductAux != null){
+                    System.out.println("=================================================================");
+                    System.out.println("Name: " + refriProductAux.getName());
+                    System.out.println("expiration date/Best Before: " + refriProductAux.getExpDate());
+                    System.out.println("Origin Country: " + refriProductAux.getOriginCountry());
+                    System.out.println("Packaging date: " + refriProductAux.getPackagingDate());
+                    System.out.println("Lot number: " + refriProductAux.getNumLot());
+                    System.out.println("Price: " + refriProductAux.getPrice() + "$");
+                    System.out.println("Recommended storage temperature: " +refriProductAux.getRecommendedTemp() + " celsius");
+                    System.out.println("Registered under: " + refriProductAux.getFoodSupervisionCode());
+                   System.out.println("=================================================================");
                 }
             }      
+        
+        
              
         for (ProductFrozenByNitrogen nitroProductAux : Plant.getProductFrozenByNitrogenStock()) {
+            
                 if (nitroProductAux != null) {
-                    if (nitroProductAux.getName().equals(productName)) {
-                        productFound = 3;
-                        nitroProduct = nitroProductAux;
-                        break;
-                    }
+                    
+                    System.out.println("=================================================================");
+                    System.out.println("Name: " + nitroProductAux.getName());
+                    System.out.println("expiration date/Best Before: " + nitroProductAux.getExpDate());
+                    System.out.println("Origin Country: " + nitroProductAux.getOriginCountry());
+                    System.out.println("Packaging date: " + nitroProductAux.getPackagingDate());
+                    System.out.println("Lot number: " + nitroProductAux.getNumLot());
+                    System.out.println("Price: " + nitroProductAux.getPrice() + "$");
+                    System.out.println("Recommended storage temperature: " + nitroProductAux.getRecommendedTemp() + " celsius");
+                    System.out.println("Refrigeration method: " + nitroProductAux.getFrozingMethod());
+                    System.out.println("Exposition time to nitrogen: " + nitroProductAux.getNitrogenExposition() + " minutes");
+                    System.out.println("=================================================================");
                 }
             }      
-                    
+              
         for (ProductFrozenByAir airProductAux : Plant.getFrozenByAirProductStock()) {
-                if (airProductAux != null) {
-                    if (airProductAux.getName().equals(productName)) {
-                        productFound = 4;
-                        airProduct = airProductAux;
-                        break;
-                    }
-                }
-            }     
+            
+            if (airProductAux != null) {
+                    
+                System.out.println("=================================================================");
+                System.out.println("Name: " + airProductAux.getName());
+                System.out.println("expiration date/Best Before: " + airProductAux.getExpDate());
+                System.out.println("Origin Country: " + airProductAux.getOriginCountry());
+                System.out.println("Packaging date: " + airProductAux.getPackagingDate());
+                System.out.println("Lot number: " + airProductAux.getNumLot());
+                System.out.println("Price: " + airProductAux.getPrice() + "$");
+                System.out.println("Recommended storage temperature: " + airProductAux.getRecommendedTemp() + " celsius");
+                System.out.println("Frozing Air composition: ");
+                System.out.println("%" + airProductAux.getPercentCarbonDiox() + "Carbon dioxide");
+                System.out.println("%" + airProductAux.getPercentNitrogen() + "Nitrogen");
+                System.out.println("%" + airProductAux.getPercentOxigen() + "Oxigen");
+                System.out.println("%" + airProductAux.getPercentWaterSteam() + "Water Steam");
+               System.out.println("=================================================================");
+            }
+        }     
+       
             
         for (ProductFrozenByWater waterProductAux : Plant.getProductFrozenByWaterStock()) {
                 if (waterProductAux != null) {
-                    if (waterProductAux.getName().equals(productName)) {
-                        productFound = 5;
-                        waterProduct = waterProductAux;
-                        break;
-                    }
+                    System.out.println("=================================================================");
+                    System.out.println("Name: " + waterProductAux.getName());
+                    System.out.println("expiration date/Best Before: " + waterProductAux.getExpDate());
+                    System.out.println("Origin Country: " + waterProductAux.getOriginCountry());
+                    System.out.println("Packaging date: " + waterProductAux.getPackagingDate());
+                    System.out.println("Lot number: " + waterProductAux.getNumLot());
+                    System.out.println("Price: " + waterProductAux.getPrice() + "$");
+                    System.out.println("Recommended storage temperature: " + waterProductAux.getRecommendedTemp() + " celsius");
+                    System.out.println("Salinity of the frozing water: " + waterProductAux.getSalinity() + " grams of salt/ water litre");
+                   System.out.println("=================================================================");
                 }
-            }     
+        }     
+                           
+    }            
         
-        
-        switch(productFound){
-            
-            case 1:
-           
-                System.out.println("Name: " + freshProduct.getName());
-                System.out.println("expiration date/Best Before: " + freshProduct.getExpDate());
-                System.out.println("Origin Country: " + freshProduct.getOriginCountry());
-                System.out.println("Packaging date: " + freshProduct.getPackagingDate());
-                System.out.println("Numero de lote" + freshProduct.getNumLot());
-                System.out.println("Price: " + freshProduct.getPrice() + "$");
-                
-                break;
-                
-            case 2:
-                
-                System.out.println("Name: " + refriProduct.getName());
-                System.out.println("expiration date/Best Before: " + refriProduct.getExpDate());
-                System.out.println("Origin Country: " + refriProduct.getOriginCountry());
-                System.out.println("Packaging date: " + refriProduct.getPackagingDate());
-                System.out.println("Lot number: " + refriProduct.getNumLot());
-                System.out.println("Price: " + refriProduct.getPrice() + "$");
-                System.out.println("Recommended storage temperature: " + refriProduct.getRecommendedTemp() + " celsius");
-                System.out.println("Registered under: " + refriProduct.getFoodSupervisionCode());
-                
-                break;
-                
-                
-                
-            case 3:
-                
-                System.out.println("Name: " + nitroProduct.getName());
-                System.out.println("expiration date/Best Before: " + nitroProduct.getExpDate());
-                System.out.println("Origin Country: " + nitroProduct.getOriginCountry());
-                System.out.println("Packaging date: " + nitroProduct.getPackagingDate());
-                System.out.println("Lot number: " + nitroProduct.getNumLot());
-                System.out.println("Price: " + nitroProduct.getPrice() + "$");
-                System.out.println("Recommended storage temperature: " + nitroProduct.getRecommendedTemp() + " celsius");
-                System.out.println("Refrigeration method: " + nitroProduct.getFrozingMethod());
-                System.out.println("Exposition time to nitrogen: " + nitroProduct.getNitrogenExposition() + " seconds");
-                
-                break;
-                
-                
-            case 4:
-                
-                System.out.println("Name: " + airProduct.getName());
-                System.out.println("expiration date/Best Before: " + airProduct.getExpDate());
-                System.out.println("Origin Country: " + airProduct.getOriginCountry());
-                System.out.println("Packaging date: " + airProduct.getPackagingDate());
-                System.out.println("Lot number: " + airProduct.getNumLot());
-                System.out.println("Price: " + airProduct.getPrice() + "$");
-                System.out.println("Recommended storage temperature: " + airProduct.getRecommendedTemp() + " celsius");
-                System.out.println("Frozing Air composition: ");
-                System.out.println("%" + airProduct.getPercentCarbonDiox() + "Carbon dioxide");
-                System.out.println("%" + airProduct.getPercentNitrogen() + "Nitrogen");
-                System.out.println("%" + airProduct.getPercentOxigen() + "Oxigen");
-                System.out.println("%" + airProduct.getPercentWaterSteam() + "Water Steam");
-                
-                break;
-                
-            case 5:
-                
-                System.out.println("Name: " + airProduct.getName());
-                System.out.println("expiration date/Best Before: " + airProduct.getExpDate());
-                System.out.println("Origin Country: " + airProduct.getOriginCountry());
-                System.out.println("Packaging date: " + airProduct.getPackagingDate());
-                System.out.println("Lot number: " + airProduct.getNumLot());
-                System.out.println("Price: " + airProduct.getPrice() + "$");
-                System.out.println("Recommended storage temperature: " + airProduct.getRecommendedTemp() + " celsius");
-                System.out.println("Salinity of the frozing water: " + waterProduct.getSalinity() + " grams of salt/ water litre");
-                
-                break;
-            
-            default:
-                System.out.println("This product doesn´t exist in our inventary, you must manufacture it first.");
-                
-                break;
-                
-        }            
-        
-    }
-    
-    
 }
+    
+    
+

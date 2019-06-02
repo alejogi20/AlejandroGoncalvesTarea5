@@ -40,17 +40,17 @@ public class Plant {
 
                 case 1:
                     System.out.println("You are talking to the worker....");
-                    this.worker.menu();
+                    worker.menu();
                     this.takeInput = true;
                     break;
                 case 2:
                    System.out.println("You are talking to the Supervisor....");
-                   this.supervisor.menu(); 
+                   supervisor.menu(); 
                    this.takeInput = true;
                     break;
                 case 3:
                     System.out.println("You are talking to the Manager....");
-                    this.manager.menu();
+                    manager.menu();
                     this.takeInput = true;
                     break;
                 case 4:
@@ -103,7 +103,7 @@ public class Plant {
                         
                         FreshProduct freshProduct = new FreshProduct(name, packagingDate, originCountry, expDate, numLot, price);
                         
-                        Plant.worker.addFreshProductToStock(freshProduct, Plant.freshProductStock);
+                        Plant.worker.addFreshProductToStock(freshProduct);
                         System.out.println("Fresh Product added to the stock Succesfully!");
                     }
                     
@@ -137,7 +137,7 @@ public class Plant {
                        
                         RefrigeratedProduct refrigeratedProduct = new RefrigeratedProduct(foodSupervisionCode, packagingDate, originCountry, recommendedTemp, expDate, name, numLot, price);
                       
-                        Plant.worker.addRefrigeratedProductToStock(refrigeratedProduct, this.refrigeratedProductStock);
+                        Plant.worker.addRefrigeratedProductToStock(refrigeratedProduct, Plant.refrigeratedProductStock);
                         System.out.println("Refrigerated Product added to the stock Succesfully!");
                     }
                     
@@ -234,7 +234,7 @@ public class Plant {
 
                         ProductFrozenByNitrogen productFrozenByAir = new ProductFrozenByNitrogen(FrozingMethod, NitrogenExposition, packagingDate, originCountry, recommendedTemp, expDate, name, numLot, price);
                       
-                        Plant.worker.addFrozenNitroProductToStock(productFrozenByAir, this.productFrozenByNitrogenStock);
+                        Plant.worker.addFrozenNitroProductToStock(productFrozenByAir, Plant.productFrozenByNitrogenStock);
                         System.out.println("Frozen by nitrogen Product added to the stock Succesfully!");
                     }
                     break;
@@ -263,7 +263,7 @@ public class Plant {
                         
                         ProductFrozenByWater productFrozenByWater = new ProductFrozenByWater(salinity, packagingDate, originCountry, recommendedTemp, expDate, name, numLot, price);
                       
-                        Plant.worker.addFrozenWaterProductToStock(productFrozenByWater, this.productFrozenByWaterStock);
+                        Plant.worker.addFrozenWaterProductToStock(productFrozenByWater, Plant.productFrozenByWaterStock);
                         System.out.println("Frozen by water Product added to the stock Succesfully!");
                     }
                     

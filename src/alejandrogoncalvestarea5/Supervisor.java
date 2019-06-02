@@ -88,7 +88,7 @@ public class Supervisor extends Employee{
                                if(Plant.getFreshProductStock()[i] != null){
                                    
                                    System.out.println("You selled " + Plant.getFreshProductStock()[i].getName() + 
-                                                      "by " + Plant.getFreshProductStock()[i].getPrice() + "$");
+                                                      " by " + Plant.getFreshProductStock()[i].getPrice() + "$");
                                    
                                    total += Plant.getFreshProductStock()[i].getPrice();
                                    Plant.getFreshProductStock()[i] = null;
@@ -126,7 +126,7 @@ public class Supervisor extends Employee{
                                if(Plant.getRefrigeratedProductStock()[i] != null){
                                    
                                    System.out.println("You selled " + Plant.getRefrigeratedProductStock()[i].getName() + 
-                                                      "by " + Plant.getRefrigeratedProductStock()[i].getPrice() + "$");
+                                                      " by " + Plant.getRefrigeratedProductStock()[i].getPrice() + "$");
                                    
                                    total += Plant.getRefrigeratedProductStock()[i].getPrice();
                                    Plant.getRefrigeratedProductStock()[i] = null;
@@ -165,7 +165,7 @@ public class Supervisor extends Employee{
                                if(Plant.getFrozenByAirProductStock()[i] != null){
                                    
                                    System.out.println("You selled " + Plant.getFrozenByAirProductStock()[i].getName() + 
-                                                      "by " + Plant.getFrozenByAirProductStock()[i].getPrice() + "$");
+                                                      " by " + Plant.getFrozenByAirProductStock()[i].getPrice() + "$");
                                    
                                    total += Plant.getFrozenByAirProductStock()[i].getPrice();
                                    Plant.getFrozenByAirProductStock()[i] = null;
@@ -205,7 +205,7 @@ public class Supervisor extends Employee{
                                if(Plant.getProductFrozenByWaterStock()[i] != null){
                                    
                                    System.out.println("You selled " + Plant.getProductFrozenByWaterStock()[i].getName() + 
-                                                      "by " + Plant.getProductFrozenByWaterStock()[i].getPrice() + "$");
+                                                      " by " + Plant.getProductFrozenByWaterStock()[i].getPrice() + "$");
                                    
                                    total += Plant.getProductFrozenByWaterStock()[i].getPrice();
                                    Plant.getProductFrozenByWaterStock()[i] = null;
@@ -245,7 +245,7 @@ public class Supervisor extends Employee{
                                if(Plant.getProductFrozenByNitrogenStock()[i] != null){
                                    
                                    System.out.println("You selled " + Plant.getProductFrozenByNitrogenStock()[i].getName() + 
-                                                      "by " + Plant.getProductFrozenByNitrogenStock()[i].getPrice() + "$");
+                                                      " by " + Plant.getProductFrozenByNitrogenStock()[i].getPrice() + "$");
                                    
                                    total += Plant.getProductFrozenByNitrogenStock()[i].getPrice();
                                    Plant.getProductFrozenByNitrogenStock()[i] = null;

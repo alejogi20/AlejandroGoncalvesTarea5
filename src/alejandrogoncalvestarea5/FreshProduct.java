@@ -9,7 +9,7 @@ public class FreshProduct extends Product{
     
     private String packagingDate, originCountry; 
 
-    public FreshProduct(String packagingDate, String originCountry, String expDate, String name, int numLot, int price) {
+    public FreshProduct(String name, String packagingDate,  String originCountry, String expDate, int numLot, int price) {
         super(expDate, name, numLot, price);
         this.packagingDate = packagingDate;
         this.originCountry = originCountry;
