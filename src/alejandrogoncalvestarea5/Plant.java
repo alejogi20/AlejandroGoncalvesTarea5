@@ -9,14 +9,15 @@ import java.util.Scanner;
 public class Plant {
     private final Scanner sc = new Scanner(System.in);
     private static final Worker worker = new Worker(15);
-    private final Supervisor supervisor = new Supervisor(22);
-    private final Manager manager = new Manager(18);
+    private static final Supervisor supervisor = new Supervisor(22);
+    private static final Manager manager = new Manager(18);
     private static FreshProduct[] freshProductStock = new FreshProduct[10];
     private static ProductFrozenByAir[] frozenByAirProductStock = new ProductFrozenByAir[10];
     private static RefrigeratedProduct[] refrigeratedProductStock = new RefrigeratedProduct[10];
     private static ProductFrozenByNitrogen[] productFrozenByNitrogenStock = new ProductFrozenByNitrogen[10];
     private static ProductFrozenByWater[] productFrozenByWaterStock = new ProductFrozenByWater[10];
     private boolean takeInput = true;
+    private static int totalOfDay;
     
     public Plant() {}
 
@@ -40,23 +41,28 @@ public class Plant {
                 case 1:
                     System.out.println("You are talking to the worker....");
                     this.worker.menu();
+                    this.takeInput = true;
                     break;
                 case 2:
                    System.out.println("You are talking to the Supervisor....");
                    this.supervisor.menu(); 
+                   this.takeInput = true;
                     break;
                 case 3:
                     System.out.println("You are talking to the Manager....");
                     this.manager.menu();
+                    this.takeInput = true;
                     break;
                 case 4:
                     this.manufactureMenu();
-                
+                    this.takeInput = true;        
+                     break;
                 case 5:
                     
                     System.out.println("Day ended, goodnight employees! This is Today´s bill");
                     this.showBill();
-                    
+                    this.takeInput = false;
+                    break;
                 default: 
                     System.out.println("Not a valid option, please try again!");
                     break;
@@ -78,7 +84,7 @@ public class Plant {
             switch(option){
 
                 case 1:
-                    if(this.worker.checkFreshProductStock(this.freshProductStock)){
+                    if(Plant.worker.checkFreshProductStock(Plant.freshProductStock)){
                         String name, packagingDate, originCountry, expDate;
                         int numLot, price;
                         
@@ -97,21 +103,18 @@ public class Plant {
                         
                         FreshProduct freshProduct = new FreshProduct(name, packagingDate, originCountry, expDate, numLot, price);
                         
-                        this.worker.addFreshProductToStock(freshProduct, this.freshProductStock);
+                        Plant.worker.addFreshProductToStock(freshProduct, Plant.freshProductStock);
                         System.out.println("Fresh Product added to the stock Succesfully!");
                     }
                     
                     break;
                 case 2:
-                   System.out.print("\nEnter 1 - To manufacture a Product frozen by air" +
-                                    "\nEnter 2 - To manufacture a Product frozen by Nitrogen" +
-                                    "\nEnter 3 - To manufacture a Product frozen by Water" +
-                                    "\nEnter 4 - To cancel " +
-                                    "\nWhat would you like to do? : ");
+                   
+                    this.FrozenProductMenu();
                     
                     break;
                 case 3:
-                    if(this.worker.checkRefrigeratedProductStock(this.refrigeratedProductStock)){
+                    if(Plant.worker.checkRefrigeratedProductStock(Plant.refrigeratedProductStock)){
                         String foodSupervisionCode, packagingDate, originCountry, expDate, name;
                         int recommendedTemp, numLot, price;
                         
@@ -134,7 +137,7 @@ public class Plant {
                        
                         RefrigeratedProduct refrigeratedProduct = new RefrigeratedProduct(foodSupervisionCode, packagingDate, originCountry, recommendedTemp, expDate, name, numLot, price);
                       
-                        this.worker.addRefrigeratedProductToStock(refrigeratedProduct, this.refrigeratedProductStock);
+                        Plant.worker.addRefrigeratedProductToStock(refrigeratedProduct, this.refrigeratedProductStock);
                         System.out.println("Refrigerated Product added to the stock Succesfully!");
                     }
                     
@@ -142,6 +145,8 @@ public class Plant {
                 case 4:
                     
                     this.takeInput = false;
+                    
+                    break;
                 default: 
                     System.out.println("Not a valid option, please try again!");
                     break;
@@ -165,7 +170,7 @@ public class Plant {
             switch(option){
 
                 case 1:
-                    if(this.worker.checkFrozenAirProductStock(this.frozenByAirProductStock)){
+                    if(Plant.worker.checkFrozenAirProductStock(Plant.frozenByAirProductStock)){
                         int percentNitrogen, percentOxigen, percentCarbonDioxide, percentWaterSteam, recommendedTemp, numLot, price;
                         String packagingDate, originCountry, expDate, name; 
                          
@@ -182,7 +187,7 @@ public class Plant {
                         numLot = sc.nextInt();
                         System.out.print("Enter a price for this product: ");
                         price = sc.nextInt();
-                        System.out.print("Enter the recommended temperature: ");
+                        System.out.print("Enter the recommended storage temperature: ");
                         recommendedTemp = sc.nextInt();
                         System.out.print("Enter the frozing air composition.");
                         System.out.print("% of Oxigen: ");
@@ -196,14 +201,14 @@ public class Plant {
 
                         ProductFrozenByAir productFrozenByAir = new ProductFrozenByAir(percentNitrogen, percentOxigen, percentCarbonDioxide, percentWaterSteam, packagingDate, originCountry, recommendedTemp, expDate, name, numLot, price);
                       
-                        this.worker.addFrozenAirProductToStock(productFrozenByAir, this.frozenByAirProductStock);
+                        Plant.worker.addFrozenAirProductToStock(productFrozenByAir, Plant.frozenByAirProductStock);
                         System.out.println("Frozen by air Product added to the stock Succesfully!");
                     }
                     
                     break;
                     
                 case 2:
-                   if(this.worker.checkFrozenNitrogenProductStock(this.productFrozenByNitrogenStock)){
+                   if(Plant.worker.checkFrozenNitrogenProductStock(Plant.productFrozenByNitrogenStock)){
                         int  NitrogenExposition, recommendedTemp, numLot, price;
                         String packagingDate, originCountry, expDate, name, FrozingMethod; 
                          
@@ -229,12 +234,12 @@ public class Plant {
 
                         ProductFrozenByNitrogen productFrozenByAir = new ProductFrozenByNitrogen(FrozingMethod, NitrogenExposition, packagingDate, originCountry, recommendedTemp, expDate, name, numLot, price);
                       
-                        this.worker.addFrozenNitroProductToStock(productFrozenByAir, this.productFrozenByNitrogenStock);
+                        Plant.worker.addFrozenNitroProductToStock(productFrozenByAir, this.productFrozenByNitrogenStock);
                         System.out.println("Frozen by nitrogen Product added to the stock Succesfully!");
                     }
                     break;
                 case 3:
-                    if(this.worker.checkFrozenWaterProductStock(productFrozenByWaterStock)){
+                    if(Plant.worker.checkFrozenWaterProductStock(productFrozenByWaterStock)){
                         int salinity, recommendedTemp, numLot, price;
                         String packagingDate, originCountry, expDate, name; 
                          
@@ -258,18 +263,30 @@ public class Plant {
                         
                         ProductFrozenByWater productFrozenByWater = new ProductFrozenByWater(salinity, packagingDate, originCountry, recommendedTemp, expDate, name, numLot, price);
                       
-                        this.worker.addFrozenWaterProductToStock(productFrozenByWater, this.productFrozenByWaterStock);
+                        Plant.worker.addFrozenWaterProductToStock(productFrozenByWater, this.productFrozenByWaterStock);
                         System.out.println("Frozen by water Product added to the stock Succesfully!");
                     }
                     
                     break;
                 case 4:
                     aux = false;
+                    
+                    break;
                 default: 
                     System.out.println("Not a valid option, please try again!");
                     break;
             }
         }
+    }
+    
+    private void showBill() {
+        System.out.println("Employee salaries: ");
+        System.out.println("Supervisor " + Plant.supervisor.getSalary());
+        System.out.println("Manager " + Plant.manager.getSalary());
+        System.out.println("Worker " + Plant.worker.getSalary());
+        System.out.println("Total salaries: " + (Plant.supervisor.getSalary() + Plant.manager.getSalary() + Plant.worker.getSalary()) );
+        System.out.println("Total earned by selling products: " + Plant.totalOfDay);
+        
     }
 
     public static FreshProduct[] getFreshProductStock() {
@@ -328,13 +345,22 @@ public class Plant {
         return sc;
     }
 
-    public Supervisor getSupervisor() {
+    public static Supervisor getSupervisor() {
         return supervisor;
     }
 
-    public Manager getManager() {
+    public static Manager getManager() {
         return manager;
     }
+
+    public static int getTotalOfDay() {
+        return totalOfDay;
+    }
+
+    public static void setTotalOfDay(int totalOfDay) {
+        Plant.totalOfDay = totalOfDay;
+    }
+
     
     
 }

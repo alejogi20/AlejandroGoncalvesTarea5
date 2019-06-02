@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Worker extends Employee{
  
     private final Scanner sc = new Scanner(System.in);
-    private boolean takeInput = false;
+    private boolean takeInput;
     
     public Worker(int salary) {
         super(salary);
@@ -18,6 +18,8 @@ public class Worker extends Employee{
     
     public void menu(){
         System.out.println("Hello boss! This is what I can do for you:");
+        
+        takeInput = true;
         
         while(this.takeInput){
             System.out.print("\nEnter 1 - To know information about a product" +
@@ -87,7 +89,7 @@ public class Worker extends Employee{
         int freeSpaces = 0;
         
         for (RefrigeratedProduct refrigeratedProduct1 : refrigeratedProductStock) {
-            if (refrigeratedProductStock == null) freeSpaces++;
+            if (refrigeratedProduct1 == null) freeSpaces++;
         }
         
         if(freeSpaces == 0){
@@ -103,7 +105,7 @@ public class Worker extends Employee{
         
         for(int i = 0; i < refrigeratedProductStock.length; i++){
             if(refrigeratedProductStock[i] == null){
-                refrigeratedProductStock[i] = refrigeratedProduct;
+                Plant.getRefrigeratedProductStock()[i] = refrigeratedProduct;
                 break;
             }
         } 
@@ -113,7 +115,7 @@ public class Worker extends Employee{
         int freeSpaces = 0;
         
         for (ProductFrozenByAir frozenByAirProduct1 : frozenByAirProductStock) {
-            if (frozenByAirProductStock == null) freeSpaces++;
+            if (frozenByAirProduct1 == null) freeSpaces++;
         }
         
         if(freeSpaces == 0){
@@ -139,7 +141,7 @@ public class Worker extends Employee{
         int freeSpaces = 0;
         
         for (ProductFrozenByWater frozenByWaterProduct1 : frozenByWaterProductStock) {
-            if (frozenByWaterProductStock == null) freeSpaces++;
+            if (frozenByWaterProduct1 == null) freeSpaces++;
         }
         
         if(freeSpaces == 0){
@@ -165,7 +167,7 @@ public class Worker extends Employee{
         int freeSpaces = 0;
         
         for (ProductFrozenByNitrogen frozenByNitrogenProduct1 : frozenByNitrogenProductStock) {
-            if (frozenByNitrogenProductStock == null) freeSpaces++;
+            if (frozenByNitrogenProduct1 == null) freeSpaces++;
         }
         
         if(freeSpaces == 0){
@@ -196,8 +198,6 @@ public class Worker extends Employee{
         ProductFrozenByAir  airProduct = null;     
         ProductFrozenByWater waterProduct = null;
         
-        
-            
         for (FreshProduct freshProductAux : Plant.getFreshProductStock()) {
             if (freshProductAux != null) {
                 if (freshProductAux.getName().equals(productName)) {
@@ -207,10 +207,8 @@ public class Worker extends Employee{
                 }
             }
         }
-        
-        if(productFound == 0){  
-            
-            for (RefrigeratedProduct refriProductAux: Plant.getRefrigeratedProductStock()) {
+          
+        for (RefrigeratedProduct refriProductAux: Plant.getRefrigeratedProductStock()) {
                 if (refriProductAux != null) {
                     if (refriProductAux.getName().equals(productName)) {
                         productFound = 2;
@@ -218,12 +216,9 @@ public class Worker extends Employee{
                         break;
                     }
                 }
-            }  
-            
-        }else if(productFound == 0){   
-            
-            
-            for (ProductFrozenByNitrogen nitroProductAux : Plant.getProductFrozenByNitrogenStock()) {
+            }      
+             
+        for (ProductFrozenByNitrogen nitroProductAux : Plant.getProductFrozenByNitrogenStock()) {
                 if (nitroProductAux != null) {
                     if (nitroProductAux.getName().equals(productName)) {
                         productFound = 3;
@@ -231,12 +226,9 @@ public class Worker extends Employee{
                         break;
                     }
                 }
-            }  
-            
-        }else if(productFound == 0){   
-              
-            
-            for (ProductFrozenByAir airProductAux : Plant.getFrozenByAirProductStock()) {
+            }      
+                    
+        for (ProductFrozenByAir airProductAux : Plant.getFrozenByAirProductStock()) {
                 if (airProductAux != null) {
                     if (airProductAux.getName().equals(productName)) {
                         productFound = 4;
@@ -244,11 +236,9 @@ public class Worker extends Employee{
                         break;
                     }
                 }
-            } 
+            }     
             
-        }else if(productFound == 0){  
-            
-            for (ProductFrozenByWater waterProductAux : Plant.getProductFrozenByWaterStock()) {
+        for (ProductFrozenByWater waterProductAux : Plant.getProductFrozenByWaterStock()) {
                 if (waterProductAux != null) {
                     if (waterProductAux.getName().equals(productName)) {
                         productFound = 5;
@@ -256,8 +246,8 @@ public class Worker extends Employee{
                         break;
                     }
                 }
-            } 
-        }
+            }     
+        
         
         switch(productFound){
             
@@ -329,6 +319,11 @@ public class Worker extends Employee{
                 System.out.println("Price: " + airProduct.getPrice() + "$");
                 System.out.println("Recommended storage temperature: " + airProduct.getRecommendedTemp() + " celsius");
                 System.out.println("Salinity of the frozing water: " + waterProduct.getSalinity() + " grams of salt/ water litre");
+                
+                break;
+            
+            default:
+                System.out.println("This product doesn´t exist in our inventary, you must manufacture it first.");
                 
                 break;
                 
